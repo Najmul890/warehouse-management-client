@@ -8,7 +8,7 @@ const Products = () => {
     
     return (
         <div className='container p-5' >
-            <h2 className='text-center' > <span className="text-success">Products</span>, we discover for you</h2>
+            <h2 className='text-center' > <span className="text-success">Products</span>, we discover for you </h2>
             <Row xs={1} md={3} className="g-5 py-5">
                 {
                     products.slice(0,6).map(product=> <Product 
