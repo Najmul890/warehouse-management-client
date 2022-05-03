@@ -12,10 +12,10 @@ const Login = () => {
             }
     
     return (
-        <div>
+        
              <div className='container w-50 mx-auto'>
             
-                <h2 className='text-primary text-center mt-2'>Please Login</h2>
+                <h2 className='text-success text-center mt-2'>Please Login</h2>
                 <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control name="email" type="email" placeholder="Enter email" required />
@@ -23,15 +23,15 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control name="password" type="password" placeholder="Password" required />
                     </Form.Group>
-                    <Button variant="primary w-50 mx-auto d-block mb-2" type="submit">
+                    <Button variant="success w-50 mx-auto d-block mb-2" type="submit">
                         Login
                     </Button>
                 </Form>
             
             
-        </div>
+            </div>
             
-        </div>
+        
     );
 };
 

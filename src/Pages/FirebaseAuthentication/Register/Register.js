@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
 
 const Register = () => {
     const handleRegister=(event)=>{
@@ -12,7 +13,7 @@ const Register = () => {
     }
     return (
         <div className='container w-50 mx-auto' >
-            <h2 className='text-primary text-center mt-2'>Please Register</h2>
+            <h2 className='text-success text-center mt-2'>Please Register</h2>
                 <Form onSubmit={handleRegister}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control name="name" type="text" placeholder="Your Name" required />
@@ -23,10 +24,11 @@ const Register = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control name="password" type="password" placeholder="Password" required />
                     </Form.Group>
-                    <Button variant="primary w-50 mx-auto d-block mb-2" type="submit">
+                    <Button variant="success w-50 mx-auto d-block mb-2" type="submit">
                         Login
                     </Button>
                 </Form>
+                <GoogleSignIn></GoogleSignIn>
         </div>
     );
 };
