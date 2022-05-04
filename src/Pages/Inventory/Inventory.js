@@ -16,10 +16,7 @@ const Inventory = () => {
     }, [])
 
 
-    const handleUpdateProductQuantity = event =>{
-        event.preventDefault();
-        const productQuantity=product.quantity-1;
-
+    const updateProductQuantity=(productQuantity)=>{
         const updatedProduct = {name, image, _id, price, quantity:productQuantity, shortDescription, supplier};
 
         // send data to the server
@@ -38,6 +35,23 @@ const Inventory = () => {
                 setProduct(updatedProduct)
             }
         })
+
+    }
+
+
+    const handleUpdateProductQuantity = () =>{
+        
+        const productQuantity=product.quantity-1;
+        updateProductQuantity(productQuantity)
+
+        
+    }
+
+    const handleProductStock=(event)=>{
+        event.preventDefault();
+        const productQuantity= product.quantity + parseInt(event.target.quantity.value);
+        updateProductQuantity(productQuantity)
+
     }
 
     return (
@@ -53,6 +67,13 @@ const Inventory = () => {
                     <p>price: ${price} </p>
                     <p className='fw-bold' > {supplier} </p>
                     <button onClick={handleUpdateProductQuantity} className="btn btn-success">Delivered</button>
+
+                    <div>
+                    <form  onSubmit={handleProductStock} >
+                    <input type="number" name="quantity" id="" />
+                    <button type="submit" className="btn btn-warning ">Restock this product</button>
+                    </form>
+                    </div>
                     </div>
 
                 </div>
