@@ -16,11 +16,11 @@ const Register = () => {
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
         
   
-    useEffect(() => {
+    
         if (user) {
-            navigate(from);
+            navigate(from, {replace: true});
         }
-    }, [user]);
+    
 
     const [updateProfile] = useUpdateProfile(auth);
 

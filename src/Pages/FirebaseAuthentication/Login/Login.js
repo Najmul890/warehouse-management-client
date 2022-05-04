@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation(); 
+    const emailRef = useRef('');
 
     let from = location.state?.from?.pathname || "/";
     let errorElement;
@@ -50,9 +51,9 @@ const Login = () => {
         navigate('/register');
     }
 
-    const resetPassword = async (event) => {
-        event.preventDefault();
-        const email = event.target.email.value;
+    const resetPassword = async() => {
+        
+        const email = emailRef.current.value;
         if (email) {
             
             await sendPasswordResetEmail(email);
@@ -71,7 +72,7 @@ const Login = () => {
             <h2 className='text-success text-center mt-2'>Please Login</h2>
             <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control name="email" type="email" placeholder="Enter email" required />
+                    <Form.Control name="email" ref={emailRef} type="email" placeholder="Enter email" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control name="password" type="password" placeholder="Password" required />
