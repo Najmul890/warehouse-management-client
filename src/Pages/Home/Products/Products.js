@@ -1,10 +1,14 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import { UseProducts } from '../../../Hooks/UseProducts/UseProducts';
+import Loading from '../../Shared/Loading/Loading';
 import Product from './Product/Product';
 
 const Products = () => {
     const [products]=UseProducts();
+    if(!products){
+       return <Loading></Loading>
+    }
     
     return (
         <div className='container p-5' >

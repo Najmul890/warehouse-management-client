@@ -32,6 +32,8 @@ const RequireAuth = ({ children }) => {
                     <h5 className='text-success'> Please Verify your email address</h5>
                     <button onClick={sendVerificationEmail} className="btn-primary">Send mail again!</button>
 
+                    <h3 className="fw-bold text-warning">*** Note: Please reload the page after verify your email</h3>
+
                </div>
 
     }

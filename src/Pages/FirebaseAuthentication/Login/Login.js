@@ -2,9 +2,11 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
@@ -82,7 +84,8 @@ const Login = () => {
             {errorElement}
             <p>Didn't have an account? <Link to="/register" className='text-success fw-bold pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
             <p>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
-
+            <GoogleSignIn></GoogleSignIn> 
+            <ToastContainer></ToastContainer>
         </div>
 
 
