@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Product = ({product}) => {
     const {name, _id, image, shortDescription, price, quantity,supplier}= product;
@@ -17,7 +18,9 @@ const Product = ({product}) => {
                 <h4>Price: ${price} </h4>
                 <Card.Text>Brand: {supplier}  </Card.Text>
                 </Card.Body>
-                <Button> Update </Button>
+                <Link to={`inventory/${_id}`} >
+                   <Button> Update </Button>
+                </Link>
             </Card>
        </Col>
     );
