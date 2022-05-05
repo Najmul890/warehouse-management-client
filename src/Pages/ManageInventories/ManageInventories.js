@@ -19,6 +19,7 @@ const ManageInventories = () => {
                             <thead>
                                 <tr>
                                     <th className="text-secondary text-left" scope="col">Sr No</th>
+                                    <th className="text-secondary" scope="col">Image</th>
                                     <th className="text-secondary" scope="col">Product Name</th>
                                     <th className="text-secondary" scope="col">Product Id</th>
                                     <th className="text-secondary" scope="col">Brand</th>
@@ -34,6 +35,7 @@ const ManageInventories = () => {
                                            
                                         <tr key={product._id} >
                                             <td>{index + 1}</td>
+                                            <td> <img width={50} height={50} src={product.image} alt="" /> </td>
                                             <td>{product.name}</td>
                                             <td>{product._id}</td>
                                             <td>{product.supplier}</td>

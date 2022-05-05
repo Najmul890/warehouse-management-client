@@ -1,25 +1,38 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const AddInventory = () => {
-      const handleAddProduct=(event)=>{
-          event.preventDefault();
-          const name=event.target.name.value;
-          const image=event.target.image.value;
-          const shortDescription=event.target.shortDescription.value;
-          const price=event.target.price.value;
-          const quantity=event.target.quantity.value;
-          const supplier=event.target.supplier.value;
+    const handleAddProduct = (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const image = event.target.image.value;
+        const shortDescription = event.target.shortDescription.value;
+        const price = event.target.price.value;
+        const quantity = event.target.quantity.value;
+        const supplier = event.target.supplier.value;
 
-          const newProduct={name,image,shortDescription,price,quantity,supplier};
-          console.log(newProduct);
-      }
+        const newProduct = { name, image, shortDescription, price, quantity, supplier };
+
+        fetch('http://localhost:5000/product', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast("product added successfully")
+                event.target.reset();
+            })
+    }
     return (
         <div className='container' >
             <h2>add a new product</h2>
             <Form onSubmit={handleAddProduct}>
                 <Form.Group className="mb-3">
-                    <Form.Control name="name"  type="text" placeholder="Enter product name" required />
+                    <Form.Control name="name" type="text" placeholder="Enter product name" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Control name="image" type="text" placeholder="Enter image URL" required />
