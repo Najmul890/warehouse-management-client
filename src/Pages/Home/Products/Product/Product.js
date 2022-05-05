@@ -15,7 +15,7 @@ const Product = ({product}) => {
                     {shortDescription}
                 </Card.Text>
                 <Card.Text>Quantity: {quantity} </Card.Text>
-                <h4>Price: ${price} </h4>
+                <h4>Price: ${price}</h4>
                 <Card.Text>Brand: {supplier}  </Card.Text>
                 </Card.Body>
                 <Link to={`inventory/${_id}`} >

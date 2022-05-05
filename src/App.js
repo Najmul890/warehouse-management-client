@@ -7,6 +7,9 @@ import Header from "./Pages/Shared/Header/Header";
 import 'react-toastify/dist/ReactToastify.css';
 import Inventory from "./Pages/Inventory/Inventory";
 import RequireAuth from "./Pages/FirebaseAuthentication/RequireAuth/RequireAuth";
+import ManageInventories from "./Pages/ManageInventories/ManageInventories";
+import NotFound from "./Pages/NotFound/NotFound";
+import AddInventory from "./Pages/AddInventory/AddInventory";
 
 
 function App() {
@@ -20,8 +23,19 @@ function App() {
             <Inventory></Inventory>
           </RequireAuth>
         }></Route>
+        <Route path="/manageInventories" element={
+          <RequireAuth>
+            <ManageInventories></ManageInventories>
+          </RequireAuth>
+        }></Route>
+        <Route path="/addInventory" element={
+          <RequireAuth>
+            <AddInventory></AddInventory>
+          </RequireAuth>
+        }></Route>
         <Route path="/login" element={<Login></Login>} ></Route>
         <Route path="/register" element={<Register></Register>} ></Route>
+        <Route path="*" element={<NotFound></NotFound>} ></Route>
       </Routes>
       <ToastContainer></ToastContainer>
     </div>
