@@ -8,7 +8,7 @@ const Inventory = () => {
     const {name, image, _id, price, quantity, shortDescription, supplier} = product;
 
     useEffect( () =>{
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://sleepy-reaches-87605.herokuapp.com/product/${id}`;
         fetch(url)
         .then(res=> res.json())
         .then(data => setProduct(data));
@@ -21,7 +21,7 @@ const Inventory = () => {
 
         //update a product and send data to the server
         
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://sleepy-reaches-87605.herokuapp.com/product/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

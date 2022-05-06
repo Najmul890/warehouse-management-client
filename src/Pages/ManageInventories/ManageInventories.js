@@ -10,7 +10,7 @@ const ManageInventories = () => {
     const handleDeleteProduct = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
         if (confirmToDelete) {
-            const url = `http://localhost:5000/product/${id}`;
+            const url = `https://sleepy-reaches-87605.herokuapp.com/product/${id}`;
 
             fetch(url, {
                 method: 'DELETE'

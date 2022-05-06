@@ -20,7 +20,7 @@ const AddInventory = () => {
 
         const newProduct = { name, image, shortDescription, price, quantity, supplier, userEmail };
         
-        fetch('http://localhost:5000/product', {
+        fetch('https://sleepy-reaches-87605.herokuapp.com/product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
