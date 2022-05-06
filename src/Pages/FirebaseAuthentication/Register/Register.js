@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { auth } from '../../../firebase.init';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
 import 'react-toastify/dist/ReactToastify.css';
+import { UseToken } from '../../../Hooks/UseToken/UseToken';
 
 
 const Register = () => {
@@ -14,10 +15,11 @@ const Register = () => {
 
     const from = location.state?.from?.pathname || "/";
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-        
+    
+    const [token]= UseToken(user);
   
     
-        if (user) {
+        if (token) {
             navigate(from, {replace: true});
         }
     

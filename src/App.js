@@ -10,6 +10,9 @@ import RequireAuth from "./Pages/FirebaseAuthentication/RequireAuth/RequireAuth"
 import ManageInventories from "./Pages/ManageInventories/ManageInventories";
 import NotFound from "./Pages/NotFound/NotFound";
 import AddInventory from "./Pages/AddInventory/AddInventory";
+import About from "./Pages/About/About";
+import Blogs from "./Pages/Blogs/Blogs";
+import MyProducts from "./Pages/MyProducts/MyProducts";
 
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
+        <Route path="/about" element={<About></About>} ></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>} ></Route>
         <Route path="/inventory/:id" element={
           <RequireAuth>
             <Inventory></Inventory>
@@ -31,6 +36,11 @@ function App() {
         <Route path="/addInventory" element={
           <RequireAuth>
             <AddInventory></AddInventory>
+          </RequireAuth>
+        }></Route>
+        <Route path="/myProducts" element={
+          <RequireAuth>
+            <MyProducts></MyProducts>
           </RequireAuth>
         }></Route>
         <Route path="/login" element={<Login></Login>} ></Route>

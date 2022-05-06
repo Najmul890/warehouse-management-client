@@ -7,6 +7,8 @@ import { auth } from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
 import 'react-toastify/dist/ReactToastify.css';
+import { UseToken } from '../../../Hooks/UseToken/UseToken';
+
 
 
 const Login = () => {
@@ -24,27 +26,30 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+    const [token]= UseToken(user);
 
     if (loading) {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if(token){
         navigate(from, { replace: true });
     }
 
+    
     if (error) {
         errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
 
 
 
-    const handleLogin = (event) => {
+    const handleLogin = async(event) => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+       
     }
 
     const navigateRegister = () => {

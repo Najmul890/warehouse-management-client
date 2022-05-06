@@ -1,8 +1,12 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import { auth } from '../../firebase.init';
 
 const AddInventory = () => {
+    const [user]=useAuthState(auth);
+
     const handleAddProduct = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
@@ -12,8 +16,10 @@ const AddInventory = () => {
         const quantity = event.target.quantity.value;
         const supplier = event.target.supplier.value;
 
-        const newProduct = { name, image, shortDescription, price, quantity, supplier };
+        const userEmail=user?.email;
 
+        const newProduct = { name, image, shortDescription, price, quantity, supplier, userEmail };
+        
         fetch('http://localhost:5000/product', {
             method: 'POST',
             headers: {
@@ -30,7 +36,11 @@ const AddInventory = () => {
     return (
         <div className='container' >
             <h2>add a new product</h2>
-            <Form onSubmit={handleAddProduct}>
+            <Form className='w-50' onSubmit={handleAddProduct}>
+                <Form.Group className="mb-3">
+                    <label htmlFor="email">Your Email:</label>
+                    <Form.Control name="email" type="email" value={user?.email} required readOnly />
+                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Control name="name" type="text" placeholder="Enter product name" required />
                 </Form.Group>

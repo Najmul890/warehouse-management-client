@@ -1,11 +1,42 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { UseProducts } from '../../Hooks/UseProducts/UseProducts';
+import { signOut } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase.init';
+import axios from 'axios';
 
-const ManageInventories = () => {
-    const [products, setProducts] = UseProducts();
+
+const MyProducts = () => {
+    const [user] = useAuthState(auth);
+    const [products, setProducts] = useState([]);
+    const navigate= useNavigate();
+
+    useEffect(() => {
+        const getProducts = async() =>{
+            const email = user.email;
+            const url = `http://localhost:5000/myProducts?email=${email}`;
+            try{
+                const {data} = await axios.get(url,{
+                    headers:{
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                setProducts(data);
+            }
+            catch(error){
+                console.log(error.message);
+                if(error.response.status === 401 || error.response.status === 403){
+                    signOut(auth);
+                    navigate('/login')
+                }
+            }
+        }
+        getProducts();
+
+    }, [user]);
+
 
     const handleDeleteProduct = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
@@ -15,22 +46,19 @@ const ManageInventories = () => {
             fetch(url, {
                 method: 'DELETE'
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    const remainingProducts = products.filter(product => product._id !== id);
-                    setProducts(remainingProducts);
-                }
-                
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        const remainingProducts = products.filter(product => product._id !== id);
+                        setProducts(remainingProducts);
+                    }
+
+                })
         }
     }
     return (
-        <div className='container-fluid' >
-            <h2>Manage Your Inventories</h2>
-            <div className="me-5">
-                <Link to="/addInventory" > <button className="btn btn-success">Add new product</button> </Link>
-            </div>
+        <div>
+            <h2>my products {products.length} </h2>
             <div className="row">
 
                 <div className="col-md-12">
@@ -62,7 +90,7 @@ const ManageInventories = () => {
                                             <td>{product.supplier}</td>
                                             <td>${product.price}</td>
                                             <td>{product.quantity}</td>
-                                            <td> <FontAwesomeIcon icon={faTrashCan}  style={{cursor:"pointer"}} className='text-danger ms-3'  onClick={()=>handleDeleteProduct(product._id)}/> 
+                                            <td> <FontAwesomeIcon icon={faTrashCan} style={{ cursor: "pointer" }} className='text-danger ms-3' onClick={() => handleDeleteProduct(product._id)} />
                                             </td>
 
                                         </tr>
@@ -74,7 +102,8 @@ const ManageInventories = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 
-export default ManageInventories;
+export default MyProducts;
