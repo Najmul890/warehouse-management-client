@@ -6,8 +6,8 @@ const Product = ({product}) => {
     const {name, _id, image, shortDescription, price, quantity,supplier}= product;
 
     return (
-        <Col>
-            <Card>
+        <Col >
+            <Card className='p-2 color-dark' >
                 <Card.Img variant="top" src={image} height={400}  />
                 <Card.Body>
                 <Card.Title> {name} </Card.Title>
@@ -19,7 +19,7 @@ const Product = ({product}) => {
                 <Card.Text>Brand: {supplier}  </Card.Text>
                 </Card.Body>
                 <Link to={`inventory/${_id}`} >
-                   <Button> Update </Button>
+                   <Button className='element-bg ms-3' > Update </Button>
                 </Link>
             </Card>
        </Col>

@@ -13,11 +13,12 @@ import AddInventory from "./Pages/AddInventory/AddInventory";
 import About from "./Pages/About/About";
 import Blogs from "./Pages/Blogs/Blogs";
 import MyProducts from "./Pages/MyProducts/MyProducts";
+import './App.css';
 
 
 function App() {
   return (
-    <div>
+    <div className="App" >
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} ></Route>
