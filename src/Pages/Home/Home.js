@@ -1,7 +1,6 @@
 import React from 'react';
 import Agents from './Agents/Agents';
 import Banner from './Banner/Banner';
-import Brand from './Brand/Brand';
 import Discount from './Discount/Discount';
 import Products from './Products/Products';
 
@@ -10,7 +9,6 @@ const Home = () => {
         <div>
             <h2 className="my-5 text-center fw-bold main-color">Ice Storage <span className="color-dark">Management</span></h2>
             <Banner></Banner>
-            {/* <Brand></Brand> */}
             <Discount></Discount>
             <Products></Products>
             <Agents></Agents>

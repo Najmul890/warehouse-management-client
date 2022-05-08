@@ -82,8 +82,8 @@ const Inventory = () => {
 
                     <div className='mt-5' >
                     <form  onSubmit={handleProductStock} >
-                    <input placeholder='input product quantity' type="number" name="quantity" id="" />
-                    <button type="submit" className="btn btn-warning ms-2 ">Restock this product</button>
+                    <input className='mt-2' placeholder='input product quantity' type="number" name="quantity" id="" />
+                    <button type="submit" className="btn btn-warning ms-2  mt-1 ">Restock this product</button>
                     </form>
                     </div>
                     </div>

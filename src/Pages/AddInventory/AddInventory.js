@@ -35,9 +35,9 @@ const AddInventory = () => {
             })
     }
     return (
-        <div className='container' >
-            <h2>add a new product</h2>
-            <Form className='w-50' onSubmit={handleAddProduct}>
+        <div className='container p-5' >
+            <h2>Add a new product</h2>
+            <Form className='w-80 mx-auto' onSubmit={handleAddProduct}>
                 <Form.Group className="mb-3">
                     <label htmlFor="email">Your Email:</label>
                     <Form.Control name="email" type="email" value={user?.email} required readOnly />
@@ -49,7 +49,7 @@ const AddInventory = () => {
                     <Form.Control name="image" type="text" placeholder="Enter image URL" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Control name="shortDescription" type="text" placeholder="Enter a short description about the product" required />
+                    <Form.Control name="shortDescription" type="text" placeholder="Enter a short description" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Control name="price" type="number" placeholder="Enter the product price" required />

@@ -41,8 +41,8 @@ const Register = () => {
 
 
     return (
-        <div className='container w-50 mx-auto' >
-            <h2 className='text-success text-center mt-2'>Please Register</h2>
+        <div className='container w-lg-50 w-100 mx-auto mb-5' >
+            <h2 className='color-dark text-center mt-2'>Please Register</h2>
                 <Form onSubmit={handleRegister}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control name="name" type="text" placeholder="Your Name" required />
@@ -53,11 +53,11 @@ const Register = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control name="password" minLength={6} type="password" placeholder="Password" required />
                     </Form.Group>
-                    <Button variant="success w-50 mx-auto d-block mb-2" type="submit">
+                    <Button className="element-bg w-50 mx-auto d-block mb-2" type="submit">
                         Register
                     </Button>
                 </Form>
-                <p>Already have an account? <Link to="/login" >Login</Link> </p>
+                <p className='color-dark' >Already have an account? <Link className='main-color' to="/login" >Login</Link> </p>
                 <GoogleSignIn></GoogleSignIn>
         </div>
     );

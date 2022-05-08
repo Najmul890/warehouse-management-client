@@ -42,7 +42,7 @@ const ManageInventories = () => {
                 <div className="col-md-12">
 
                     <div className="row p-5">
-                        <table className="table table-borderLess">
+                        <table className="table table-borderLess table-responsive">
                             <thead>
                                 <tr>
                                     <th className="text-secondary text-left" scope="col">Sr No</th>
