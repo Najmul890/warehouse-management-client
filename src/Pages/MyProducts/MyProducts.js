@@ -8,6 +8,7 @@ import { auth } from '../../firebase.init';
 import axios from 'axios';
 
 
+
 const MyProducts = () => {
     const [user] = useAuthState(auth);
     const [products, setProducts] = useState([]);
@@ -37,6 +38,8 @@ const MyProducts = () => {
 
     }, [user]);
 
+    
+
 
     const handleDeleteProduct = (id) => {
         const confirmToDelete = window.confirm('Are you sure, want to delete this product?');
@@ -58,7 +61,7 @@ const MyProducts = () => {
     }
     return (
         <div>
-            <h2>my products {products.length} </h2>
+            <h2 className='text-center mt-5' >My products: {products.length} </h2>
             <div className="row">
 
                 <div className="col-md-12">

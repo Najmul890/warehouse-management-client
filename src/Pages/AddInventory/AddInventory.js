@@ -12,13 +12,14 @@ const AddInventory = () => {
         const name = event.target.name.value;
         const image = event.target.image.value;
         const shortDescription = event.target.shortDescription.value;
-        const price = event.target.price.value;
-        const quantity = event.target.quantity.value;
+        const price = parseInt(event.target.price.value);
+        const quantity = parseInt(event.target.quantity.value);
         const supplier = event.target.supplier.value;
+        const sold=0;
 
         const userEmail=user?.email;
 
-        const newProduct = { name, image, shortDescription, price, quantity, supplier, userEmail };
+        const newProduct = { name, image, shortDescription, price, quantity, supplier, userEmail, sold };
         
         fetch('https://sleepy-reaches-87605.herokuapp.com/product', {
             method: 'POST',

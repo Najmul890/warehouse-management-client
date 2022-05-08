@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UseProducts } from '../../Hooks/UseProducts/UseProducts';
+import Loading from '../Shared/Loading/Loading';
 
 const ManageInventories = () => {
     const [products, setProducts] = UseProducts();
@@ -25,6 +26,11 @@ const ManageInventories = () => {
             })
         }
     }
+
+    if(products.length===0){
+        return <Loading></Loading>
+    }
+    
     return (
         <div className='container-fluid' >
             <h2>Manage Your Inventories</h2>

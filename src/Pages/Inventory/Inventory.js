@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+
 const Inventory = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
-    const {name, image, _id, price, quantity, shortDescription, supplier} = product;
+    const {name, image, _id, price, quantity,sold, shortDescription, supplier} = product;
 
     useEffect( () =>{
         const url = `https://sleepy-reaches-87605.herokuapp.com/product/${id}`;
@@ -16,8 +17,8 @@ const Inventory = () => {
     }, [])
 
 
-    const updateProductQuantity=(productQuantity)=>{
-        const updatedProduct = {...product, quantity:productQuantity};
+    const updateProductQuantity=(productQuantity, soldQuantity)=>{
+        const updatedProduct = {...product, quantity:productQuantity, sold:soldQuantity};
 
         //update a product and send data to the server
         
@@ -30,7 +31,6 @@ const Inventory = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            console.log('success', data);
             if(data.modifiedCount>0){
                 setProduct(updatedProduct)
             }
@@ -39,10 +39,11 @@ const Inventory = () => {
     }
 
 
-    const handleProductQuantityWhileDelivered = () =>{
+    const handleProductQuantityAndSoldWhileDelivered = () =>{
         
         const productQuantity=product.quantity-1;
-        updateProductQuantity(productQuantity)
+        const soldQuantity=product.sold+1;
+        updateProductQuantity(productQuantity, soldQuantity)
 
         
     }
@@ -52,7 +53,8 @@ const Inventory = () => {
         const newlyStokedProducts=parseInt(event.target.quantity.value);
         if(newlyStokedProducts>0){
             const productQuantity= product.quantity + newlyStokedProducts;
-            updateProductQuantity(productQuantity);
+            
+            updateProductQuantity(productQuantity,product.sold);
             event.target.reset();
             toast(`successfully added of ${newlyStokedProducts} products to ${name} stock`)
         }else{
@@ -62,6 +64,7 @@ const Inventory = () => {
 
     }
 
+    
     return (
         <div className='container' >
             <h2 className='text-center m-5' > Update this product </h2>
@@ -72,9 +75,10 @@ const Inventory = () => {
                     <p>product id: <span className="fw-bold">{_id}</span> </p>
                     <p> {shortDescription} </p>
                     <p>quantity: {quantity} </p>
+                    <p>sold: {sold || 0 }  </p>
                     <p>price: ${price} </p>
                     <p>Brand: <span className='fw-bold'> {supplier} </span></p>
-                    <button onClick={handleProductQuantityWhileDelivered} className="btn btn-success">Delivered</button>
+                    <button onClick={handleProductQuantityAndSoldWhileDelivered} className="btn btn-success">Delivered</button>
 
                     <div className='mt-5' >
                     <form  onSubmit={handleProductStock} >
