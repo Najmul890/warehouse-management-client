@@ -7,8 +7,10 @@ import bellissimoLogo from '../../../img/bellissimo.png';;
 
 const Brand = () => {
     return (
-        <div className='container p-5 mt-5 d-flex' >
-            <img className='mx-5' width={100} height={60} src={pepsiLogo} alt="pepsi logo" />
+        <div className='container p-5 mt-5 d-flex d-sm-flex-none' >
+            <div className="p-5 mx-5">
+            <img className='' width={100} height={60} src={pepsiLogo} alt="pepsi logo" />
+            </div>
             <img className='mx-5' width={100} height={60} src={iglooLogo} alt="igloo logo" />
             <img  className='mx-5'width={100} height={60} src={bellissimoLogo} alt="bellissimo logo" />
             <img className='mx-5' width={100} height={60} src={cocacolaLogo} alt="cocacola logo" />

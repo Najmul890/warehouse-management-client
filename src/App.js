@@ -14,6 +14,7 @@ import About from "./Pages/About/About";
 import Blogs from "./Pages/Blogs/Blogs";
 import MyProducts from "./Pages/MyProducts/MyProducts";
 import './App.css';
+import Footer from "./Pages/Shared/Footer/Footer";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/register" element={<Register></Register>} ></Route>
         <Route path="*" element={<NotFound></NotFound>} ></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
