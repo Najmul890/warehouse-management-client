@@ -1,5 +1,7 @@
 # Ice Storage Management
 
+## It is a product management website where various ice cream and cold drinks etc products are managed.
+
 Live Site [https://ice-storage-management.web.app/](https://ice-storage-management.web.app/)
 
 Server side repository: [https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Najmul890](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Najmul890)
